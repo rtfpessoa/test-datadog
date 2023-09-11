@@ -2,9 +2,9 @@
 
 service_name="datadog-agent"
 
-is_service_running() {
-  service "$service_name" status /dev/null 2>&1
-}
+# is_service_running() {
+#   service "$service_name" status /dev/null 2>&1
+# }
 
 start_service() {
   echo "Starting $service_name..."
@@ -14,28 +14,28 @@ start_service() {
   service "${service_name}" start
 
   # Wait for service to start
-  sleep 10
+  sleep 60
 }
 
 start_service
 
-while true; do
-  if is_service_running; then
-    echo "$service_name is running"
-    # Dump service logs for debug purposes
-    cat /var/log/datadog/agent.log
-    cat /var/log/datadog/process-agent.log
-    cat /var/log/datadog/trace-agent.log
-    break
-  else
-    echo "$service_name is not running"
-    start_service
-    # Dump service logs for debug purposes
-    cat /var/log/datadog/agent.log
-    cat /var/log/datadog/process-agent.log
-    cat /var/log/datadog/trace-agent.log
-  fi
-done
+# while true; do
+#   if is_service_running; then
+#     echo "$service_name is running"
+#     # Dump service logs for debug purposes
+#     cat /var/log/datadog/agent.log
+#     cat /var/log/datadog/process-agent.log
+#     cat /var/log/datadog/trace-agent.log
+#     break
+#   else
+#     echo "$service_name is not running"
+#     start_service
+#     # Dump service logs for debug purposes
+#     cat /var/log/datadog/agent.log
+#     cat /var/log/datadog/process-agent.log
+#     cat /var/log/datadog/trace-agent.log
+#   fi
+# done
 
 mkdir -p /var/log/roodle
 /app/bin/app

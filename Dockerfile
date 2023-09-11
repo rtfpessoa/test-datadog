@@ -44,7 +44,7 @@ RUN apt-get -y update && \
   DD_INSTALL_ONLY=true \
   bash -c "$(curl -fsSL https://s3.amazonaws.com/dd-agent/scripts/install_script_agent7.sh)"
 
-COPY --chmod=0777 ./conf.d/go.d /etc/datadog-agent/conf.d/go.d
+# COPY --chmod=0777 ./conf.d/go.d /etc/datadog-agent/conf.d/go.d
 
 COPY --chmod=0777 entrypoint.sh /app/entrypoint.sh
 
